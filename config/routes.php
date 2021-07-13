@@ -1,6 +1,8 @@
 <?php
 
 return [
-    "/" => ["file" => "home.php",
-    "action" => "home"],
+    "/" => ["class"=>"App\\Controller\\Home",
+    "method"=>"hom"
+]
 ];
+

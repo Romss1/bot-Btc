@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+include "./../vendor/autoload.php";
 
 $url =filter_input(INPUT_SERVER, 'PATH_INFO');
 $table = require ('../config/routes.php');
@@ -12,8 +12,10 @@ if($url === null){
 foreach ($table as $urlRoute => $route):
 
     if($url === $urlRoute){
-        include '../src/Controller/'.$route['file'];
-        $route['action']();
+       
+        $cl = new $route['class'];
+        $act = $route["method"];
+        $cl->$act();
     }
 
 endforeach;

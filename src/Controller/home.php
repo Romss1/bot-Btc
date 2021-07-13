@@ -1,16 +1,25 @@
 <?php
-function home(){
+namespace App\Controller;
 
-include '../src/Service/threshold.php';
+use App\Services\ApiLink;
+class Home
+{
 
-$value = intval(askApiPairs('BTCEUR'));
+    public function hom()
+    {
 
-$result = threshold(28000, 28000);
+        $value = intval(ApiLink::askApiPairs('BTCEUR'));
 
-echo 'Timestamp : ' .time().'<br>';
+        $result = ApiLink::threshold(30000, 27850);
 
+        $test = ApiLink::calculPourcentageThresholdDown();
+        var_dump($test);
 
+        
+        
+        include '../templates/home/home.html.php';
+    }
 
-include '../templates/home/home.html.php';
-
+    
 }
+
