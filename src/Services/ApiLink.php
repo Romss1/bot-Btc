@@ -4,7 +4,25 @@ namespace App\Services;
 
 class ApiLink
 {
+    private $pourcentDown;
+    private $pourcentUp;
 
+    public function __construct($newPourcentDown,$newPourcentUp){
+
+        $this->pourcentDown = $newPourcentDown;
+        $this->pourcentUp = $newPourcentUp;
+    }
+
+    public function getPourcentDown(){
+        return $this->pourcentDown;
+    }
+
+    public function getPourcentUp(){
+        return $this->pourcentUp;
+    }
+
+   
+    
     public static function askApiPairs($pair)
     {
         $urlApi = 'https://api.binance.com/api/v3/avgPrice?symbol=' . $pair;
@@ -25,18 +43,19 @@ class ApiLink
         }
     }
 
-    public static function calculPourcentageThresholdDown()
+    public function calculPourcentageThresholdDown()
     {
 
-        $pourcentDown = filter_input(INPUT_POST, 'thresholdDown');
-        var_dump($pourcentDown);
-        return $thresholdValueDown = ApiLink::askApiPairs('BTCEUR') - (ApiLink::askApiPairs('BTCEUR') * 10 / 100);
+        $this->pourcentDown = filter_input(INPUT_POST, 'thresholdDown');
+        return $thresholdValueDown = ApiLink::askApiPairs('BTCEUR') - (ApiLink::askApiPairs('BTCEUR') * $this->pourcentDown / 100);
     }
 
 
     public function calculPourcentageThresholdUp()
     {
-        $pourcentUp = filter_input(INPUT_POST, 'thresholdUp');
-        return $thresholdValueUp = ApiLink::askApiPairs('BTCEUR') + (ApiLink::askApiPairs('BTCEUR') * $pourcentUp / 100);
+        $this->pourcentUp = filter_input(INPUT_POST, 'thresholdUp');
+        return $thresholdValueUp = ApiLink::askApiPairs('BTCEUR') + (ApiLink::askApiPairs('BTCEUR') * $this->pourcentUp / 100);
     }
+
+    
 }

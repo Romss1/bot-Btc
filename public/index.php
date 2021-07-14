@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "./../vendor/autoload.php";
 
 $url =filter_input(INPUT_SERVER, 'PATH_INFO');
