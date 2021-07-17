@@ -5,21 +5,20 @@ include '../templates/my_head.html.php';
 <main>
 
     <h1>ça marche</h1>
-    <p><?= $value ?></p>
-    <p><?= $result ?></p>
 
     <form method="post" action=''>
         <select name='base' class="form-select" aria-label="Default select example">
             <option selected>Choix de la base</option>
-            <option value="1">BTC</option>
-            <option value="2">ETH</option>
-            <option value="3">VET</option>
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="VET">VET</option>
         </select>
+        
         <select name='reference' class="form-select" aria-label="Default select example">
             <option selected>Choix de la référence</option>
-            <option value="1">USDT</option>
-            <option value="2">USDC</option>
-            <option value="3">BUSD</option>
+            <option value="USDT">USDT</option>
+            <option value="USDC">USDC</option>
+            <option value="BUSD">BUSD</option>
         </select>
 
 
@@ -29,7 +28,7 @@ include '../templates/my_head.html.php';
 
         <input name='price' class="form-control" type='number' id='thresholdDown' placeholder="Pour combien en %">
 
-        <button class="btn btn-primary" type="submit" name="submit">Valider</button>
+        <button class="btn btn-primary" type="submit" name="submit" value="true">Valider</button>
 
 </form>
 

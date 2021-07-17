@@ -5,11 +5,17 @@ namespace App\Services;
 class Form
 {
 
+    protected $form;
+
+    public function __construct(){
+
+        $this->getForm();
+    }
 
     public function getForm()
     {
 
-        return $form = [
+        $this->form = [
             'base' => [
                 'value' => filter_input(INPUT_POST, 'base'),
                 'error' => null
